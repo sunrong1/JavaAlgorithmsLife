@@ -3,8 +3,14 @@ package array;
 import java.util.HashMap;
 import java.util.Map;
 
-//从数组中，找到两个整数等于目标值的index
-public class NO_1_two_sum {
+/**
+ * Description
+ * 从数组中，找到两个整数等于目标值的index
+ *
+ * @author dave
+ * @since {DATE} {TIME}
+ */
+public class NO_1_two_sum_simple {
     public static void main(String[] args) {
         int[] array = new int[]{2, 7, 11, 15};
         int[] ret = addTowSum(array, 26);
