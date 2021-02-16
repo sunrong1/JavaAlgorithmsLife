@@ -4,15 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 问题类型：
+ * 数据结构设计相关问题
+ * <p>
  * Description
- * 从数组中，找到两个整数等于目标值的index
+ * 数组中，找到两个整数等于目标值的index
  *
  * @author dave
- * @since {DATE} {TIME}
+ * @since 2021/2/11 21:42
  */
 public class NO_1_two_sum_simple {
     public static void main(String[] args) {
-        int[] array = new int[]{2, 7, 11, 15};
+        int[] array = {2, 7, 11, 15};
         int[] ret = addTowSum(array, 26);
         if (ret.length > 1) {
             System.out.println(ret[0] + " " + ret[1]);
