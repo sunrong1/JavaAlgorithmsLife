@@ -1,5 +1,7 @@
 package array;
 
+import util.ArrayUtil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,12 +24,7 @@ public class NO_18_4_sum_medium {
         int[] nums = {1, -2, -5, -4, -3, 3, 3, 5};
         int target = -11;
         List<List<Integer>> ret = fourSum(nums, target);
-        for (List<Integer> g : ret) {
-            for (int i = 0; i < g.size(); i++) {
-                System.out.print(g.get(i) + " ");
-            }
-            System.out.println("");
-        }
+        ArrayUtil.printIntListList(ret);
     }
 
     /**

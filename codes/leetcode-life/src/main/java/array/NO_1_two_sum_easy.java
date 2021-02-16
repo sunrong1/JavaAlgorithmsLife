@@ -13,7 +13,7 @@ import java.util.Map;
  * @author dave
  * @since 2021/2/11 21:42
  */
-public class NO_1_two_sum_simple {
+public class NO_1_two_sum_easy {
     public static void main(String[] args) {
         int[] array = {2, 7, 11, 15};
         int[] ret = addTowSum(array, 26);

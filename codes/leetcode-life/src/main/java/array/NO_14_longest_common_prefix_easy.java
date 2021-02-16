@@ -11,7 +11,7 @@ package array;
  * @author dave
  * @since 2021/2/13 11:08
  */
-public class NO_14_longest_common_prefix_simple {
+public class NO_14_longest_common_prefix_easy {
     public static void main(String[] args) {
         String[] strs = {"flower", "flow", "flight"};
         String ret = longestCommonPrefix_PairCompare(strs);

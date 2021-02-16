@@ -13,7 +13,7 @@ import java.util.Map;
  * @author dave
  * @since 2021/2/11 7:30
  */
-public class NO_13_roman_to_integer_simple {
+public class NO_13_roman_to_integer_easy {
   public static void main(String[] args) {
     //LVIII = 50 + 5+ 3
     //MCMXCIV = 1000 + 900 + 90 + 4

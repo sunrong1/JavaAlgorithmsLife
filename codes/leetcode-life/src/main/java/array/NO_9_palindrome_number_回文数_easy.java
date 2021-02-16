@@ -10,7 +10,7 @@ package array;
  * @author dave
  * @since 2021/2/10 10:15
  */
-public class NO_9_palindrome_number_回文数_simple {
+public class NO_9_palindrome_number_回文数_easy {
 
     public static void main(String[] args) {
         boolean ret = isPalindrome2(1001);

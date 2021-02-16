@@ -11,7 +11,7 @@ package array;
  * @author dave
  * @since 2021/2/16 10:15
  */
-public class NO_26_remove_duplicates_from_array_simple {
+public class NO_26_remove_duplicates_from_array_easy {
     public static void main(String[] args) {
         int[] array = {1, 1, 2};
         int ret = removeDuplicates(array);
@@ -19,6 +19,12 @@ public class NO_26_remove_duplicates_from_array_simple {
 
     }
 
+    /**
+     * 双指针，原址操作，向左移动数组元素
+     *
+     * @param nums
+     * @return
+     */
     public static int removeDuplicates(int[] nums) {
 
         if (nums == null || nums.length < 1) {
@@ -35,7 +41,6 @@ public class NO_26_remove_duplicates_from_array_simple {
                 i++;
             }
         }
-
 
         for (int i = 0; i < newLenght; i++) {
             System.out.print(nums[i] + " ");

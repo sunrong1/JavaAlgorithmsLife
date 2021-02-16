@@ -1,5 +1,7 @@
 package array;
 
+import util.ArrayUtil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,11 +22,7 @@ public class NO_15_3_sum_medium {
 //        int[] nums = {-1, 0, 1, 2, -1, -4};
         int[] nums = {0, 0, 0, 0};
         List<List<Integer>> ret = threeSum(nums);
-        for (List<Integer> g : ret) {
-            for (int i = 0; i < g.size(); i++) {
-                System.out.println(g.get(i));
-            }
-        }
+        ArrayUtil.printIntListList(ret);
     }
 
     /**

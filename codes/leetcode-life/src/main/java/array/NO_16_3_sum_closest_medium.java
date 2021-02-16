@@ -18,7 +18,6 @@ public class NO_16_3_sum_closest_medium {
         // int[] nums = {-1, 2, 1, -4};
         int target = 0;
         int ret = threeSumClosest(nums, target);
-
         System.out.println(ret);
 
     }
