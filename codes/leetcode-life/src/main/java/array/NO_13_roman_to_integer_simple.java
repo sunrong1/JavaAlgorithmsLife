@@ -4,23 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 问题类型：
+ * 数学类问题；map数据结构操作；
+ * <p>
+ * Description
+ * 罗马数字转整数
+ *
  * @author dave
- * // I             1
- * // V             5
- * // X             10
- * // L             50
- * // C             100
- * // D             500
- * // M             1000
- * //
- * //大的数，除特殊场景放在小数的左边
- * // 特殊场景:
- * // I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。
- * // X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。
- * // C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
- * // 输入确保在 1 到 3999 的范围内
- * // 来源：力扣（LeetCode）
- * // 链接：https://leetcode-cn.com/problems/roman-to-integer
+ * @since 2021/2/11 7:30
  */
 public class NO_13_roman_to_integer_simple {
   public static void main(String[] args) {
@@ -68,7 +59,7 @@ public class NO_13_roman_to_integer_simple {
           temp = "";
         }
       }
-      if (temp == "") {
+      if (temp.equals("")) {
         temp = s.substring(i, i + 1);
         i++;
       }

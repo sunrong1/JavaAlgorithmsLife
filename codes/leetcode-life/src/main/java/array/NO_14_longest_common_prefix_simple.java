@@ -1,12 +1,15 @@
 package array;
 
 /**
+ * 问题类型：
+ * 数学类问题；字符串操作；
+ * <p>
  * Description
  * 查找字符串数组中的最长公共前缀。
  * 这道题，解决方法较多
  *
  * @author dave
- * @since {DATE} {TIME}
+ * @since 2021/2/13 11:08
  */
 public class NO_14_longest_common_prefix_simple {
     public static void main(String[] args) {

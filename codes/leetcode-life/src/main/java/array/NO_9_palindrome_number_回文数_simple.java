@@ -1,7 +1,14 @@
 package array;
 
 /**
+ * 问题类型：
+ * 数学类问题；整数操作
+ * <p>
+ * Description
  * 整数最大回文数
+ *
+ * @author dave
+ * @since 2021/2/10 10:15
  */
 public class NO_9_palindrome_number_回文数_simple {
 
