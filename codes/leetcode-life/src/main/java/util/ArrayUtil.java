@@ -13,12 +13,27 @@ import java.util.List;
  */
 public class ArrayUtil {
     public static void printIntListList(List<List<Integer>> lists) {
+        if (lists == null) {
+            System.out.println("----------null---------");
+            return;
+        }
         for (List<Integer> integerList : lists) {
-            for (int i = 0; i < integerList.size(); i++) {
-                System.out.print(integerList.get(i) + " ");
+            for (Integer integer : integerList) {
+                System.out.print(integer + " ");
             }
             System.out.println();
         }
     }
 
+    public static void printIntList(List<Integer> lists) {
+        if (lists == null) {
+            System.out.println("----------null---------");
+            return;
+        }
+        for (Integer list : lists) {
+            System.out.print(list + " ");
+        }
+        System.out.println();
+    }
 }
+
