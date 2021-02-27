@@ -17,7 +17,7 @@ public class NO_19_remove_nth_node_from_endlist_medium {
 
         //LinkedListUtil.printLinkedList(removeNthFromEnd(listNodeHead, 2));
 //        LinkedListUtil.printLinkedList(removeNthFromEnd_optimization(listNodeHead, 2));
-        LinkedListUtil.printLinkedList(removeNthFromEnd_count(listNodeHead, 2));
+        LinkedListUtil.print(removeNthFromEnd_count(listNodeHead, 2));
 
     }
 

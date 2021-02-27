@@ -17,7 +17,7 @@ public class NO_83_remove_duplicates_from_sorted_list {
         listNodeHead.next.next = new ListNode(3);
         listNodeHead.next.next.next = new ListNode(4);
         //  LinkedListUtil.printLinkedList(deleteDuplicates(listNodeHead));
-        LinkedListUtil.printLinkedList(deleteDuplicates_recursion(listNodeHead));
+        LinkedListUtil.print(deleteDuplicates_recursion(listNodeHead));
     }
 
     /**

@@ -25,7 +25,7 @@ public class ArrayUtil {
         }
     }
 
-    public static void printIntList(List<Integer> lists) {
+    public static void print(List<Integer> lists) {
         if (lists == null) {
             System.out.println("----------null---------");
             return;

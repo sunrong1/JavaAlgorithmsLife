@@ -25,7 +25,7 @@ public class NO_589_nany_tree_preorder_traversal_easy {
         children1.add(node2);
         Node tree = new Node(1, children1);
         List<Integer> ret = preorder(tree);
-        ArrayUtil.printIntList(ret);
+        ArrayUtil.print(ret);
     }
 
     public static List<Integer> preorder(Node root) {

@@ -20,7 +20,7 @@ public class NO_21_merge_two_sorted_lists_easy {
         ListNode listNodeHead2 = new ListNode(2);
 
         //LinkedListUtil.printLinkedList(mergeTwoLists(listNodeHead, listNodeHead2));
-        LinkedListUtil.printLinkedList(mergeTwoLists_recursion(listNodeHead, listNodeHead2));
+        LinkedListUtil.print(mergeTwoLists_recursion(listNodeHead, listNodeHead2));
     }
 
     /**

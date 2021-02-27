@@ -23,7 +23,7 @@ public class NO_94_binary_tree_inorder_traversal_medium {
         TreeNode right = new TreeNode(2, left, null);
         TreeNode tree = new TreeNode(1, null, right);
         List<Integer> ret = inorderTraversal(tree);
-        ArrayUtil.printIntList(ret);
+        ArrayUtil.print(ret);
     }
 
     /**

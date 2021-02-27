@@ -18,11 +18,12 @@ public class NO_203_remove_linkedlist_elements_easy {
         listNodeHead.next.next = new ListNode(2);
 
         ListNode ret = removeElements(listNodeHead, 2);
-        LinkedListUtil.printLinkedList(ret);
+        LinkedListUtil.print(ret);
     }
 
     /**
      * 方法1：
+     * 循环遍历
      *
      * @param head
      * @param val

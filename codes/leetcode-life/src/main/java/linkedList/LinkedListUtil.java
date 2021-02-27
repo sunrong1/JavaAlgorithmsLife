@@ -8,7 +8,7 @@ package linkedList;
  * @since 2021/2/17 9:38
  */
 public class LinkedListUtil {
-    public static void printLinkedList(ListNode listNode) {
+    public static void print(ListNode listNode) {
         while (listNode != null) {
             System.out.print(listNode.val + " ");
             listNode = listNode.next;
