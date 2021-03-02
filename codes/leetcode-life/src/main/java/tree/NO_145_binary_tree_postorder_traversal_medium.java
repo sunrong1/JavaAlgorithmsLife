@@ -2,8 +2,7 @@ package tree;
 
 import util.ArrayUtil;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 问题类型：
@@ -17,16 +16,15 @@ import java.util.List;
  */
 public class NO_145_binary_tree_postorder_traversal_medium {
     public static void main(String[] args) {
-        //叶子节点
-        TreeNode left = new TreeNode(3);
-        TreeNode right = new TreeNode(2, left, null);
-        TreeNode tree = new TreeNode(1, null, right);
-        List<Integer> ret = postorderTraversal(tree);
+        Queue<Integer> pretree = new LinkedList<>(Arrays.asList(3, 2, 9, null, null, 10));
+        TreeNode tree = TreeUtil.createBinaryTree(pretree);
+        List<Integer> ret = postorderTraversal_iteration(tree);
         ArrayUtil.print(ret);
     }
 
     /**
-     * 递归，右类似stack的味道，类似链表 NO_06offer
+     * 方法1：
+     * 递归，有类似stack的味道，类似链表 NO_06offer
      *
      * @param root
      * @return
@@ -37,7 +35,7 @@ public class NO_145_binary_tree_postorder_traversal_medium {
         return array;
     }
 
-    public static void postorderTraversal_mini(TreeNode root, List<Integer> array) {
+    private static void postorderTraversal_mini(TreeNode root, List<Integer> array) {
         if (root == null) {
             return;
         }
@@ -45,5 +43,31 @@ public class NO_145_binary_tree_postorder_traversal_medium {
         postorderTraversal_mini(root.right, array);
 
         array.add(root.val);
+    }
+
+    public static List<Integer> postorderTraversal_iteration(TreeNode root) {
+        List<Integer> array = new ArrayList<>();
+
+        Deque<TreeNode> stack = new LinkedList<>();
+        TreeNode node = root;
+        TreeNode pre = null;
+        while (node != null || !stack.isEmpty()) {
+            while (node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+
+            node = stack.pop();
+            if (node.right == null || pre == node.right) {
+                array.add(node.val);
+                pre = node;
+                node = null;
+            } else {
+                //存在右子树未访问，将当前node压栈，继续循环访问右子树
+                stack.push(node);
+                node = node.right;
+            }
+        }
+        return array;
     }
 }

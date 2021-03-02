@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 问题类型：
- * 树的遍历问题-中序遍历，读取和顺序右关系，递归
+ * 树的遍历问题-中序遍历，读取和顺序右关系，递归，stack回溯方法
  * <p>
  * Description
  * 二叉树的中序遍历
@@ -42,7 +42,7 @@ public class NO_94_binary_tree_inorder_traversal_medium {
         return ret;
     }
 
-    public static void inorderTraversal_small(TreeNode root, List<Integer> ret) {
+    private static void inorderTraversal_small(TreeNode root, List<Integer> ret) {
         if (root == null) {
             return;
         }
