@@ -3,6 +3,8 @@ package tree;
 import util.ArrayUtil;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -53,7 +55,24 @@ public class NO_94_binary_tree_inorder_traversal_medium {
 
     /**
      * 方法2：
-     * TODO: 迭代方法
+     * 迭代方法，stack
+     * <p>
+     * 先找到最左边的节点，再保存数据，再遍历右边的所有节点
      */
-
+    public static List<Integer> inorderTraversal_iteration(TreeNode root) {
+        List<Integer> ret = new ArrayList<Integer>();
+        TreeNode node = root;
+        Deque<TreeNode> stack = new LinkedList<>();
+        while (node != null || !stack.isEmpty()) {
+            while (node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+            node = stack.pop();
+            ret.add(node.val);
+            //右子树进行遍历访问
+            node = node.right;
+        }
+        return ret;
+    }
 }

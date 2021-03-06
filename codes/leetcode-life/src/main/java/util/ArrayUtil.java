@@ -35,5 +35,16 @@ public class ArrayUtil {
         }
         System.out.println();
     }
+
+    public static void print(int[] array) {
+        if (array == null) {
+            System.out.println("----------null---------");
+            return;
+        }
+        for (Integer list : array) {
+            System.out.print(list + " ");
+        }
+        System.out.println();
+    }
 }
 
