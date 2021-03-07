@@ -22,7 +22,7 @@ public class NO_06offer_print_reverse_linkedlist_easy {
         listNodeHead.next = new ListNode(3);
         listNodeHead.next.next = new ListNode(2);
 
-        int[] ret = reversePrint_fori(listNodeHead);
+        int[] ret = reversePrint_recurce(listNodeHead);
         ArrayUtil.print(Arrays.stream(ret).boxed().collect(Collectors.toList()));
     }
 
@@ -69,4 +69,32 @@ public class NO_06offer_print_reverse_linkedlist_easy {
         }
         return ret;
     }
+
+    /**
+     * @param head
+     * @return
+     */
+    public static int[] reversePrint_recurce(ListNode head) {
+        if (head == null) {
+            return new int[]{};
+        }
+
+        List<Integer> list = new ArrayList<>();
+        reversePrint_recurce(head, list);
+        int[] b = list.stream().mapToInt(Integer::valueOf).toArray();
+        return b;
+    }
+
+    private static void reversePrint_recurce(ListNode head, List<Integer> list) {
+        if (head == null) {
+            return;
+        }
+        //放在这里就是正序遍历
+        //list.add(head.val);
+        reversePrint_recurce(head.next, list);
+        //放在这里就是倒序遍历
+        list.add(head.val);
+    }
 }
+
+

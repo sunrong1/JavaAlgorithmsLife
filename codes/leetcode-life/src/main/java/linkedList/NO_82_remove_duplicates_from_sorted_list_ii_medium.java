@@ -27,15 +27,22 @@ public class NO_82_remove_duplicates_from_sorted_list_ii_medium {
         }
         ListNode prenode = new ListNode(-1);
         prenode.next = head;
-        //当前链表增加的起点
+        //新步重复链表的起点
         ListNode curr = prenode;
-        //双指针，数数，大于1个就执行删除，否则步删除
-        ListNode left = prenode.next;
-        ListNode right = prenode.next.next;
-        while (right.next != null) {
-
-
+        //双指针，判断是否存储重复，存在重复就进行删除，否则curr继续向向前走
+        while (curr.next != null && curr.next.next != null) {
+            //紧接的两个节点数值相同，发现重复，开始删除炒作
+            if (curr.next.val == curr.next.next.val) {
+                ListNode node = curr.next.next;
+                while (node.next != null && node.val == node.next.val) {
+                    node = node.next;
+                }
+                curr.next = node.next;
+            } else {
+                curr = curr.next;
+            }
         }
+        return prenode.next;
 
     }
 

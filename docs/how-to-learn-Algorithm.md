@@ -35,6 +35,8 @@ inOrder(r) = inOrder(r->left)->print r->inOrder(r->right)
 后序遍历的递推公式：
 postOrder(r) = postOrder(r->left)->postOrder(r->right)->print r
 ````
+**递归经典问题**
+NO_206 递归的链表反转问题
 
 ## 算法的思想和总结
 
