@@ -38,20 +38,66 @@ public class NO_92_reverse_linkedlist_medium {
         //
         //开始两两反转 1->2->3->null ===>  null 1 2 3 null
         //找到反转的起始点位置,curr
-        ListNode curr = new ListNode(-1);
-        curr.next = head;
-        //起始点，找到需要反转两边的前一个节点
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        //起始点，走到left -1个节点
+        ListNode leftnode = dummy;
         int pos = 0;
+        //for 循环可能更好理解点
         while (pos < left - 1) {
-            curr = curr.next;
+            leftnode = leftnode.next;
             pos++;
         }
-        ListNode pre = null;
+        //需要旋转的节点的起始节点
+        ListNode mNode = leftnode.next;
+
+        ListNode rightNode = leftnode;
         while (pos < right) {
-            ListNode node = curr.next;
-            node.next = null;
+            rightNode = rightNode.next;
+            pos++;
         }
-        return null;
+        //截取的旋转链表后的尾部
+        ListNode tail = rightNode.next;
+
+
+        rightNode.next = null;
+        ListNode mhead = reverseList_2(mNode);
+
+        //头部
+        leftnode.next = mhead;
+        //之前的头部节点，就是现在的尾部节点
+        mNode.next = tail;
+
+        return dummy.next;
+    }
+
+    private static ListNode reverseList(ListNode mNode) {
+        if (mNode == null || mNode.next == null) {
+            return mNode;
+        }
+        ListNode newHead = reverseList(mNode.next);
+        mNode.next.next = mNode;
+        mNode.next = null;
+        return newHead;
+    }
+
+    /**
+     * 方法2
+     * 双指针迭代
+     *
+     * @param head
+     * @return
+     */
+    private static ListNode reverseList_2(ListNode head) {
+        ListNode pre = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode temp = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = temp;
+        }
+        return pre;
     }
 
 }

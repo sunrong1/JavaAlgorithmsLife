@@ -78,4 +78,18 @@ public class NO_206_reverse_linkedlist_easy {
         return newHead;
     }
 
+    private static ListNode reverseList_2(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode temp = curr.next.next;
+            ListNode node = curr.next;
+            node.next = curr;
+            curr = temp;
+        }
+        return curr;
+    }
+
 }
