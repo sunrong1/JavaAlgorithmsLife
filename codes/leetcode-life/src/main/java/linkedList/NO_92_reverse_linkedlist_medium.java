@@ -58,8 +58,6 @@ public class NO_92_reverse_linkedlist_medium {
         }
         //截取的旋转链表后的尾部
         ListNode tail = rightNode.next;
-
-
         rightNode.next = null;
         ListNode mhead = reverseList_2(mNode);
 
