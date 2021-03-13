@@ -15,4 +15,13 @@ public class LinkedListUtil {
         }
         System.out.println();
     }
+
+    public static void print(Node listNode) {
+        while (listNode != null) {
+            System.out.print(listNode.val + " ");
+            listNode = listNode.next;
+        }
+        System.out.println();
+    }
+
 }

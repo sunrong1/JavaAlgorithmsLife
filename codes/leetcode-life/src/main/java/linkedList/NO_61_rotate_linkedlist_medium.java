@@ -25,7 +25,7 @@ public class NO_61_rotate_linkedlist_medium {
 
     /**
      * 循环链表法
-     * 这个真难写。。
+     * 先用草稿画图吧，否则很难写。。
      *
      * @param head
      * @param k

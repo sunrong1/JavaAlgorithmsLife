@@ -16,10 +16,17 @@ import java.util.Set;
 public class NO_202_happy_number_easy {
 
     public static void main(String[] args) {
-
-
+        //彩蛋
+        //https://xue.kaikeba.com/api/mentu/videos/692159746.mp4
+        int sum = 0;
+        for (int i = 0; i <= 100000; i++) {
+            if (isHappy(i)) {
+                sum += i;
+            }
+        }
         boolean ret = isHappy(2);
         System.out.println(ret);
+        System.out.println(sum);
     }
 
     public static boolean isHappy(int n) {
