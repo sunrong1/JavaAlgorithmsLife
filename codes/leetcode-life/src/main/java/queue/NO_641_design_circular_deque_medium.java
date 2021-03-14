@@ -11,6 +11,7 @@ package queue;
  * @since 2021/3/14 7:29
  */
 public class NO_641_design_circular_deque_medium {
+
 }
 
 /**
