@@ -18,7 +18,6 @@ public class NO_138_copy_list_with_random_pointer_medium {
         listNodeHead.next.next = new Node(3);
         listNodeHead.next.next.next = new Node(1);
 
-
         LinkedListUtil.print(copyRandomList(listNodeHead));
     }
 
@@ -44,8 +43,33 @@ public class NO_138_copy_list_with_random_pointer_medium {
             p = node.next;
         }
         //Step2：更新新节点的random
+        //p= head.next的方式不是太好
         p = head.next;
+        while (p != null) {
+            if (p.random != null) {
+                //p的random指针，指向的下一个节点，更新下一个节点的random
+                //神来之笔
+                p.random = p.random.next;
+                //p从head节点的时候复制方法
+                //p.next.random = p.random.next;
+            }
+            if (p.next != null) {
+                p = p.next.next;
+            }
 
-        return null;
+        }
+        //Step3：拆成两个独立的链表
+        Node newNode = new Node(-1);
+        Node pNew = newNode;
+        p = head;
+        while (p != null && p.next != null) {
+            //更新指针域
+            pNew.next = p.next;
+            //更新指针域
+            p.next = p.next.next;
+            pNew = pNew.next;
+            p = p.next;
+        }
+        return newNode.next;
     }
 }
