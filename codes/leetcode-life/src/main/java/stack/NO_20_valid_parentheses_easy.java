@@ -1,8 +1,6 @@
 package stack;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * 问题类型：
@@ -16,8 +14,8 @@ import java.util.Stack;
  */
 public class NO_20_valid_parentheses_easy {
     public static void main(String[] args) {
-        String input = "()[]{}";
-        boolean ret = isValid(input);
+        String input = "()[]{}}";
+        boolean ret = isValid_switch(input);
         System.out.println(ret);
     }
 
@@ -55,5 +53,59 @@ public class NO_20_valid_parentheses_easy {
             }
         }
         return characterStack.isEmpty();
+    }
+
+    /**
+     * 方法2：
+     * <p>
+     * Description
+     * Switch 语法，简化理解
+     *
+     * @Param [s]
+     * @retrun boolean
+     * @since 2021/3/21 14:52
+     */
+    public static boolean isValid_switch(String s) {
+        //优化1：数学规律，非偶数个长度，肯定不匹配
+        if (s == null) {
+            return false;
+        }
+        if (s.length() % 2 != 0) {
+            return false;
+        }
+
+        Deque<Character> stack = new LinkedList<>();
+        for (int i = 0; i < s.length(); i++) {
+            switch (s.charAt(i)) {
+                case '(':
+                case '[':
+                case '{':
+                    stack.push(s.charAt(i));
+                    break;
+
+                case '}': {
+                    if (stack.isEmpty() || stack.pop() != '{') {
+                        return false;
+                    }
+                }
+                break;
+                case ']': {
+                    if (stack.isEmpty() || stack.pop() != '[') {
+                        return false;
+                    }
+                }
+                break;
+                case ')': {
+                    if (stack.isEmpty() || stack.pop() != '(') {
+                        return false;
+                    }
+                }
+                break;
+                default:
+                    return false;
+
+            }
+        }
+        return true;
     }
 }

@@ -15,6 +15,7 @@ import java.util.*;
  * @since 2021/2/27 20:56
  */
 public class NO_145_binary_tree_postorder_traversal_medium {
+
     public static void main(String[] args) {
         Queue<Integer> pretree = new LinkedList<>(Arrays.asList(3, 2, 9, null, null, 10));
         TreeNode tree = TreeUtil.createBinaryTree(pretree);
