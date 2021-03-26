@@ -13,7 +13,7 @@ package tree;
 public class NO_331_preorder_serialization_of_binary_tree_medium {
 
     public static void main(String[] args) {
-        String preorder = "1,#";
+        String preorder = "9,3,4,#,#,1,#,#,2,#,6,#,#";
         boolean ret = isValidSerialization(preorder);
         System.out.println(ret);
     }
