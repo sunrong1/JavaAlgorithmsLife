@@ -9,7 +9,7 @@ import java.util.Queue;
 
 /**
  * 问题类型：
- * 树的遍历问题，层序遍历，广度优先搜索，递归
+ * 树的遍历问题，层序遍历，广度优先搜索;最简单的是使用递归
  * <p>
  * Description
  * 即逐层地，从左到右访问所有节点
@@ -23,7 +23,7 @@ public class NO_102_binary_tree_level_order_traversal_medium {
         TreeNode left = new TreeNode(3);
         TreeNode right = new TreeNode(2, left, null);
         TreeNode tree = new TreeNode(1, null, right);
-        List<List<Integer>> ret = levelOrder(tree);
+        List<List<Integer>> ret = levelOrder_recursion(tree);
         ArrayUtil.printIntListList(ret);
     }
 
@@ -61,6 +61,34 @@ public class NO_102_binary_tree_level_order_traversal_medium {
             ret.add(levelValue);
         }
         return ret;
+    }
+
+    /**
+     * 方法2：
+     * 使用递归,需要知道，自己目前存储的是层号的信息
+     * Description
+     *
+     * @Param [root]
+     * @retrun java.util.List<java.util.List < java.lang.Integer>>
+     * @since 2021/4/3 7:13
+     */
+    public static List<List<Integer>> levelOrder_recursion(TreeNode root) {
+        List<List<Integer>> data = new ArrayList<>();
+        levelOrder_recursion_small(root, 1, data);//1是初始层号
+        return data;
+    }
+
+    private static void levelOrder_recursion_small(TreeNode root, int row, List<List<Integer>> data) {
+        if (root == null) {
+            return;
+        }
+        if (data.size() < row) {
+            data.add(new ArrayList<>());
+        }
+        data.get(row - 1).add(root.val);
+        levelOrder_recursion_small(root.left, row + 1, data);
+        levelOrder_recursion_small(root.right, row + 1, data);
+
     }
 
 }

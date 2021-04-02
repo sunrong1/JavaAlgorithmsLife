@@ -28,6 +28,15 @@ public class NO_589_nany_tree_preorder_traversal_easy {
         ArrayUtil.print(ret);
     }
 
+    /**
+     * 方法1：
+     * 递归过程，只需要进行子问题划分即可，不需要理解整个执行过程（这个需要大量的思考和练习中锻炼出来）
+     * Description
+     *
+     * @Param [root]
+     * @retrun java.util.List<java.lang.Integer>
+     * @since 2021/4/2 22:44
+     */
     public static List<Integer> preorder(Node root) {
         List<Integer> ret = new ArrayList<Integer>();
         if (root == null) {
