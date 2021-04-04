@@ -27,6 +27,25 @@ public class NO_110_balanced_binary_tree_easy {
     }
 
     public static boolean isBalanced(TreeNode root) {
-        return true;
+        int height = getTreeHight(root);
+        System.out.println("Height:" + height);
+        return height >= 0;
+    }
+
+    private static int getTreeHight(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = getTreeHight(root.left);
+        int right = getTreeHight(root.right);
+        //如果左右子树不平衡，返回要保证负数
+        if (left < 0 || right < 0) {
+            return -1;
+        }
+        //高度差大于1 ，是非平衡函数
+        if (Math.abs(left - right) > 1) {
+            return -1;
+        }
+        return Integer.max(left, right) + 1;
     }
 }
