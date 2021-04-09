@@ -46,6 +46,9 @@ postOrder(r) = postOrder(r->left)->postOrder(r->right)->print r
 **递归经典问题**
 NO_206 递归的链表反转问题
 
+### 动态规划
+
+
 ## 算法的思想和总结
 
 ### 双指针思路总结
