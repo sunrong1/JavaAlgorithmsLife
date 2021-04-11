@@ -6,6 +6,7 @@ import java.util.*;
  * 问题类型：
  * 堆的问题，概念，定义，性质
  * 优先队列：尾部进队列，头部出元素；每次都出最大/最小值；
+ * 比较函数，less
  * <p>
  * Description
  * 堆是特殊空间的右顺序的完全二叉树，root是最大值的是大顶堆，其他未小顶堆
@@ -23,6 +24,16 @@ public class Heap {
 
         //Java内置的优先队列，默认以自然顺序排序,从小到大排列；
         Queue<Integer> priorityQueue = new PriorityQueue<>(7);
+
+        //构建大顶堆，需要设置比较器
+        PriorityQueue<Integer> integerQueue = new PriorityQueue<Integer>(new Comparator<Integer>() {
+            //当Return为True时，进行交换
+            @Override
+            public int compare(Integer num1, Integer num2) {
+                return num2 - num1;
+            }
+        });
+
         Random rand = new Random();
         for (int i = 0; i < 7; i++) {
             priorityQueue.add(new Integer(rand.nextInt(100)));
