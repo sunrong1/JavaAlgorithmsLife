@@ -19,14 +19,40 @@ public class NO_141_linkedList_cycle_easy {
         listNodeHead.next = new ListNode(3);
         listNodeHead.next.next = listNodeHead.next;
         //boolean ret = hasCycle(listNodeHead);
-        boolean ret = hasCycle_set(listNodeHead);
+        boolean ret = hasCycle3(listNodeHead);
         System.out.println(ret);
+    }
+
+    /**
+     * 快慢指针方法：
+     * 快指针比慢指针快一步，这个可以手动画下
+     * O ---》O----》O
+     *
+     * @param head
+     * @return
+     */
+    private static boolean hasCycle3(ListNode head) {
+        //特殊情况，当链表的长度比较少时
+        if(head == null || head.next == null){
+            return false;
+        }
+        ListNode slow= head;//创建一个临时变量，缓存当前头节点的地址，也可以所指向当前头节点
+        ListNode fast = head.next;// 指向慢指针的下一个
+        while (fast != slow){
+            slow = slow.next;
+            //判空
+            if (fast== null || fast.next == null){
+                return false;
+            }
+            fast = fast.next.next;
+        }
+        return true;
     }
 
     /**
      * 方法1：
      * 双指针思路，龟兔算法，快慢指针方法
-     *
+     * 快指针始终比慢指针快1步，所以快指针总能追上慢指针
      * @param head
      * @return
      */
@@ -53,7 +79,7 @@ public class NO_141_linkedList_cycle_easy {
      * @param head
      * @return
      */
-    public static boolean hasCycle_set(ListNode head) {
+    public static boolean hasCycle2(ListNode head) {
         Set<ListNode> listNodeSet = new HashSet<ListNode>();
         while (head != null) {
             if (!listNodeSet.add(head)) {

@@ -20,7 +20,49 @@ public class NO_21_merge_two_sorted_lists_easy {
         ListNode listNodeHead2 = new ListNode(2);
 
         //LinkedListUtil.printLinkedList(mergeTwoLists(listNodeHead, listNodeHead2));
-        LinkedListUtil.print(mergeTwoLists_recursion(listNodeHead, listNodeHead2));
+        LinkedListUtil.print(mergeTwoLists2(listNodeHead, listNodeHead2));
+    }
+
+    /**
+     * 把l2遍历一个个插入到l1
+     * 遍历l2
+     *
+     * @param list1
+     * @param list2
+     * @return
+     */
+    private static ListNode mergeTwoLists2(ListNode list1, ListNode list2) {
+        if (list2 == null) {
+            return list1;
+        }
+        if (list1 == null) {
+            return list2;
+        }
+        //创建新的链表，带头节点
+        ListNode head = new ListNode(-1);
+        ListNode ret = head;
+        ListNode t1 = list1;//临时指针变量
+        ListNode t2 = list2;//临时指针变量
+        while (t1 != null && t2 != null){
+            //值比较，先插入t2
+            if (t1.val > t2.val) {
+                ret.next = t2;//值变量赋值
+                t2 = t2.next;
+                ret = ret.next;
+            }
+            else {
+                ret.next = t1;
+                t1 = t1.next;
+                ret = ret.next;
+            }
+        }
+        if (t1 == null){
+            ret.next = t2;
+        }
+        else {
+            ret.next = t1;
+        }
+        return head.next;
     }
 
     /**
