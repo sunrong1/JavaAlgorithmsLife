@@ -19,8 +19,51 @@ public class NO_61_rotate_linkedlist_medium {
 //        listNodeHead.next.next.next = new ListNode(5);
         //LinkedListUtil.printLinkedList(removeNthFromEnd(listNodeHead, 2));
 //        LinkedListUtil.printLinkedList(removeNthFromEnd_optimization(listNodeHead, 2));
-        LinkedListUtil.print(rotateRight(listNodeHead, 1));
+        LinkedListUtil.print(rotateRight1(listNodeHead, 1));
 
+    }
+
+    /**
+     *
+     * @date 2025-9-23
+     * @param head
+     * @param k
+     * @return
+     */
+    private static ListNode rotateRight1(ListNode head, int k) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        //首先获得链表的长度
+        ListNode n = head;
+        int count =0;
+        while (n != null){
+            count ++;
+            n = n.next;
+        }
+        int kk = k % count;// 实际移动次数
+        if (kk == 0) {
+            return head;
+        }
+        //数数到run的位置
+        //使用技巧，设置哑节点
+        ListNode node = new ListNode(-1);
+        node.next = head;
+        int run = count -kk;
+        while (run > 0){ //走到断开节点的前一个节点
+            node = node.next;
+            run--;
+        }
+
+        //找到新的链表的头节点
+        ListNode newHead = node.next;//这个是引用指向，要清晰的清楚赋值含义
+        node.next= null;//当前节点指向的值赋值清空，断开；
+        ListNode nn = newHead;
+        while (nn.next != null){
+            nn = nn.next;
+        }
+        nn.next = head;
+        return  newHead;
     }
 
     /**

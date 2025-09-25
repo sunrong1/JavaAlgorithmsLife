@@ -47,7 +47,7 @@ public class NO_21_merge_two_sorted_lists_easy {
             //值比较，先插入t2
             if (t1.val > t2.val) {
                 ret.next = t2;//值变量赋值
-                t2 = t2.next;
+                t2 = t2.next; //引用赋值
                 ret = ret.next;
             }
             else {
