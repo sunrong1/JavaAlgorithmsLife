@@ -7,6 +7,8 @@ import java.lang.reflect.Array;
 /**
  * @program: JavaAlgorithmsLife
  * @description: 归并排序
+ * 稳定的排序算法
+ * 比较交换的排序
  * @author: dave
  * @create: 2025/9/24 13:02
  **/
