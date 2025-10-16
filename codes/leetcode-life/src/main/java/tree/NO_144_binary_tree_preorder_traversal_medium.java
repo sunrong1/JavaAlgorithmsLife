@@ -20,8 +20,15 @@ public class NO_144_binary_tree_preorder_traversal_medium {
         Queue<Integer> pretree = new LinkedList<>(Arrays.asList(3, 2, 9, null, null, 10));
         TreeNode tree = TreeUtil.createBinaryTree(pretree);
 //        List<Integer> ret = preorderTraversal(tree);
-        List<Integer> ret = preorderTraversal_iteration(tree);
+        List<Integer> ret = preorderTraversal1(tree);
+//        List<Integer> ret = preorderTraversal_iteration(tree);
         ArrayUtil.print(ret);
+    }
+
+    private static List<Integer> preorderTraversal1(TreeNode tree) {
+        List<Integer> ret = new ArrayList<>();
+        //遍历一次加一个
+        return null;
     }
 
     /**
@@ -76,8 +83,6 @@ public class NO_144_binary_tree_preorder_traversal_medium {
                 node = node.right;
             }
         }
-
         return ret;
     }
-
 }

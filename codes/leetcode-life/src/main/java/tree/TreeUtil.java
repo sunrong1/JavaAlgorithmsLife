@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * 问题类型：
- * 树的创建、使用基本问题
+ * 树的递归创建、使用基本问题
  * <p>
  * Description
  *
@@ -14,8 +13,16 @@ import java.util.Queue;
  */
 public class TreeUtil {
     /**
-     * 前序遍历 递归创建二叉树
-     *
+     * 通过前序遍历
+     * 递归创建二叉树
+     * 遇到null返回，否则会一直是主节点
+     * 举例：
+     * [1, 2, null, null, 3, 4, null, null, 5, null, null]
+     *     1
+     *    / \
+     *   2   3
+     *      / \
+     *     4   5
      * @param array
      * @return
      */
