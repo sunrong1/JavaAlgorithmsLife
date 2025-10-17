@@ -3,6 +3,7 @@ package tree;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * @program: JavaAlgorithmsLife
@@ -22,6 +23,35 @@ public class Basic_tree {
         preOrderTree(tree);
         midOrderTree(tree);
         postOrderTree(tree);
+        leveOrderTree(tree);
+    }
+
+    /**
+     * 层序遍历
+     * @param tree
+     */
+    private static void leveOrderTree(TreeNode tree) {
+        if (tree == null) {
+            System.out.println("层序：NULL");
+            return;
+        }
+        Queue<TreeNode> nodes = new LinkedList<>();
+        nodes.add(tree);
+        while (!nodes.isEmpty()){
+            int size = nodes.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = nodes.poll();
+                System.out.println("层序：" + node.val);
+                if (node.left != null) {
+                    nodes.add(node.left);
+                }
+                if (node.right != null) {
+                    nodes.add(node.right);
+                }
+            }
+
+        }
+
     }
 
     private static void postOrderTree(TreeNode tree) {
