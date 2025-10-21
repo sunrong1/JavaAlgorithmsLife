@@ -17,15 +17,45 @@ import java.util.Queue;
 public class NO_226_invert_binary_tree_easy {
 
     public static void main(String[] args) {
-        Queue<Integer> pretree = new LinkedList<>(Arrays.asList(3, 2, 9, null, null, 10));
+        //      10
+        //     /
+        //    9
+        //   / \
+        //  2   3
+        Queue<Integer> pretree = new LinkedList<>(Arrays.asList(10, 9, 2, null, null, 3));
         TreeNode tree = TreeUtil.createBinaryTree(pretree);
-        TreeNode ret = invertTree(tree);
-        System.out.print(ret);
+        TreeUtil.leveOrderTree(invertTree1(tree));
+    }
+
+    /**
+     * 递归反转,每个节点都进行左右的反转
+     * 递归公式，递归停止条件
+     * @param root
+     * @return
+     * @since 2025-10
+     */
+    private static TreeNode invertTree1(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        if (root.left != null || root.right != null) {
+            TreeNode left = root.left;
+            root.left = root.right;
+            root.right = left;
+        }
+        if (root.left != null) {
+            invertTree1(root.left);
+        }
+        if (root.right != null) {
+            invertTree1(root.right);
+        }
+        return root;
     }
 
     /**
      * 方法1：
-     * 递归算法题，只需要分解成子函数，然后证明他是正确之后，就可以，不需要详解他的整个执行过程；
+     * 递归算法题，只需要分解成子函数，然后证明他是正确之后，就可以，
+     * 不需要详解他的整个执行过程；
      * Description
      *
      * @Param [root]

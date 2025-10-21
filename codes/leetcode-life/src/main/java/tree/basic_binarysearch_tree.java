@@ -12,7 +12,7 @@ import java.util.Queue;
  **/
 public class basic_binarysearch_tree {
     public static void main(String[] args) {
-        //      3
+        //      10
         //     /
         //    9
         //   / \
