@@ -25,12 +25,12 @@ public class ArrayUtil {
         }
     }
 
-    public static void print(List<Integer> lists) {
+    public static <T> void print(List<T> lists) {
         if (lists == null) {
             System.out.println("----------null---------");
             return;
         }
-        for (Integer list : lists) {
+        for (T list : lists) {
             System.out.print(list + " ");
         }
         System.out.println();
