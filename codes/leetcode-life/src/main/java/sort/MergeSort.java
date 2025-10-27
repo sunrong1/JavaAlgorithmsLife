@@ -6,7 +6,7 @@ import java.lang.reflect.Array;
 
 /**
  * @program: JavaAlgorithmsLife
- * @description: 归并排序
+ * @description: 归并排序,非常经典的分治思想
  * 稳定的排序算法
  * 比较交换的排序
  * @author: dave
@@ -16,9 +16,81 @@ public class MergeSort {
     public static void main(String[] args) {
         int [] a  = new int[]{2,1,3,4};
 
-        ArrayUtil.print(merge1Sort(a));
+        ArrayUtil.print(merge2Sort(a));
     }
 
+    private static int[] merge2Sort(int[] a) {
+        if (a.length <=1){
+            return a;
+        }
+        mergeSortStart(a,0,a.length-1);
+        return a;
+    }
+
+    /**
+     * i到j范围内的递归排序
+     * @param a
+     * @param i
+     * @param j
+     */
+    private static void mergeSortStart(int[] a, int i, int j) {
+        if (i>=j){
+            return;
+        }
+        int mid = i+ (j-i)/2;//找到中间位置
+        mergeSortStart(a,i,mid);
+        mergeSortStart(a,mid+1,j);
+        mergeArray(a,i,mid,j);//两边都排好序后，进行合并
+    }
+
+    /**
+     * 进行排序合并
+     * @param a
+     * @param i
+     * @param mid
+     * @param j
+     */
+    private static void mergeArray(int[] a, int i, int mid, int j) {
+        //合并后的结果序列
+        int [] ret = new int[j-i+1];
+        int l = i;
+        int r = mid +1;
+        int k = 0;
+        while (l<=mid && r<= j){
+            if (a[l] <= a[r]){
+                ret[k] = a[l];
+                k++;
+                l++;
+            }
+            else {
+                ret[k] = a[r];
+                k++;
+                r++;
+            }
+        }
+        while (l<=mid){
+            ret[k] = a[l];
+            k++;
+            l++;
+        }
+        while (r<=j){
+            ret[k] = a[r];
+            k++;
+            r++;
+        }
+        k=0;
+        while (i<=j){
+            a[i]= ret[k];
+            k++;
+            i++;
+        }
+    }
+
+    /**
+     * 递归排序
+     * @param a
+     * @return
+     */
     private static int[] merge1Sort(int[] a) {
         //递归的方法：递归公式，递归的截止条件
         //递归公式：m(arr) = m(arr（left）) , m(arr(right)),再合并

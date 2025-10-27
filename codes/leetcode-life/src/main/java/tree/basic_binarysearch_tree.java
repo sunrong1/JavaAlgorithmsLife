@@ -35,7 +35,7 @@ public class basic_binarysearch_tree {
             //情况1，无左右子节点
             if (tree.left == null && tree.right == null) {
                 tree.val= -1;
-                tree = null;
+                tree = null; //这种只是修改了引用的地址，实际树没有变化；
                 return true;
             }
             //情况2，只有一个作子树
