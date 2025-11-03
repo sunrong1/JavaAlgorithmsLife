@@ -8,7 +8,8 @@ import java.util.List;
 
 /**
  * 问题类型：
- * 双指针的相关问题
+ * 双指针的相关问题，
+ * 为啥没有组合遗漏：《有序和夹逼穷举》👍
  * <p>
  * Description
  * 判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？
@@ -20,9 +21,58 @@ import java.util.List;
 public class NO_15_3_sum_medium {
     public static void main(String[] args) {
 //        int[] nums = {-1, 0, 1, 2, -1, -4};
-        int[] nums = {0, 0, 0, 0};
-        List<List<Integer>> ret = threeSum(nums);
+        int[] nums = {2,-3,0,-2,-5,-5,-4,1,2,-2,2,0,2,-4,5,5,-10};
+        List<List<Integer>> ret = threeSum1(nums);
         ArrayUtil.printIntListList(ret);
+    }
+
+    /**
+     * 先确定一个数，再用双指针确定其他的两个数
+     * 最重要的是排除重复，双指针中也需要排除重复
+     * @param nums
+     * @return
+     */
+    private static List<List<Integer>> threeSum1(int[] nums) {
+        List<List<Integer>> ret = new ArrayList<>();
+        if (nums == null || nums.length < 3){
+            return ret;
+        }
+        //排序好，后面才可以用夹逼定理节约复杂度，提升算法效率
+        Arrays.sort(nums);
+        if (nums[0] > 0){
+            return ret;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            int l = i+1;
+            int r = nums.length -1;
+            //双指针求和的目标
+            int sum = - nums[i];
+            //跳过重复的head
+            while (i < nums.length -1 && nums[i] == nums[i+1]){
+                i++;
+            }
+            while (l < r){
+                if (nums[l] + nums[r] == sum){
+                    ret.add(List.of(nums[i], nums[l], nums[r]));
+                    //排除重复的部分
+                    while (l < r && nums[l] == nums[l+1]){
+                        l++;
+                    }
+                    while (l< r && nums[r] == nums[r-1]){
+                        r--;
+                    }
+                    l++;
+                    r--;
+                }
+                else if (nums[l] + nums[r] < sum){
+                    l++;
+                }
+                else {
+                    r--;
+                }
+            }
+        }
+        return ret;
     }
 
     /**
