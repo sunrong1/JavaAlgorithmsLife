@@ -12,7 +12,9 @@ import static util.ArrayUtil.swap;
  **/
 public class HeapSort {
     public static void main(String[] args) {
-        int[] arr = {4, 10, 3, 5, 1};
+//        int[] arr = {4, 10, 3, 5, 1};
+//        int[] arr = {3, 1, 2, 4,5};
+        int[] arr = {4,5,1,3,2};
         System.out.println("排序前: " + Arrays.toString(arr));
         heapSort(arr);
         System.out.println("排序后: " + Arrays.toString(arr));
@@ -27,8 +29,8 @@ public class HeapSort {
         if (arr == null || arr.length < 2) {
             return;
         }
-        //数组长度
-        int n  = arr.length -1;
+        //堆的大小
+        int n  = arr.length;
 
         //从最后一个非叶子节点的根节点开始，遍历所有的根节点
         //因为节点 i的左子是 2i+1。当 2i+1 ≥ n时，说明它没有孩子，是叶子。解这个不等式得到 i < (n−1)/2，也就是非叶子都在 0 ~ floor((n−1)/2)。
