@@ -25,10 +25,12 @@ public class NO_104_depth_tree_easy {
     }
 
     /**
-     * 方法2  层序遍历
+     * 方法2 层序遍历
      * 使用stack优化二叉树的调用执行过程
-     * @param root
-     * @return
+     * 使用栈的非递归方式计算二叉树的最大深度
+     * 
+     * @param root 二叉树的根节点
+     * @return 二叉树的最大深度，空树返回0
      */
     private static int maxDepth1(TreeNode root) {
         if (root == null) {
@@ -77,5 +79,21 @@ public class NO_104_depth_tree_easy {
         int maxLeft = maxDepth(root.left);
         int maxRight = maxDepth(root.right);
         return Math.max(maxLeft,maxRight) + 1;
+    }
+
+    /**
+     *
+     * 练习1 ：使用递归的方式
+     * @param root
+     * @return
+     * @since 2026/1/28 12:52
+     */
+    public static int maxDepth2(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int l = maxDepth2(root.left);
+        int r = maxDepth2(root.right);
+        return 1;
     }
 }

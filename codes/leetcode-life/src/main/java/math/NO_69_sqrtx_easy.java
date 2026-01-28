@@ -1,7 +1,7 @@
 package math;
 
 /**
- * 问题类型：
+ * 问题类型：二分查找
  * 数学问题，
  * <p>
  * Description
@@ -12,14 +12,34 @@ package math;
  */
 public class NO_69_sqrtx_easy {
     public static void main(String[] args) {
-        int input = 8;
+        int input = 16;
         int ret = mySqrt(input);
         System.out.println(ret);
     }
 
-    public static int mySqrt(int x) {
+    private static int mySqrt(int x) {
+        if (x <=1){
+            return 0;
+        }
+        int l = 1;
+        int r = x;
+        while (l < r){
+            int mid = (l+r)>>1;
+            if (mid * mid > x){
+                r = mid;
+            }
+            else if (mid * mid < x){
+                l = mid;
+            }
+            else {
+                return mid;
+            }
+            if (r -l ==1){
+                return l;
+            }
+        }
+        return 0;
 
-        return -1;
     }
 
 }
