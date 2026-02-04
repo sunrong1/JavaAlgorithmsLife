@@ -1,5 +1,7 @@
 package tree;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -15,12 +17,12 @@ import java.util.Stack;
 public class NO_104_depth_tree_easy {
 
     public static void main(String[] args) {
-        //叶子节点
+        // 构造测试用例，3层二叉树
         TreeNode left = new TreeNode(3);
         TreeNode right = new TreeNode(2, left, null);
         TreeNode tree = new TreeNode(1, null, right);
 
-        int ret = maxDepth1(tree);
+        int ret = maxDepth3(tree);
         System.out.println(ret);
     }
 
@@ -36,23 +38,23 @@ public class NO_104_depth_tree_easy {
         if (root == null) {
             return 0;
         }
-        int depth =0;
-        //遍历一层 加1
+        int depth = 0;
+        // 遍历一层 加1
         Stack<TreeNode> stack = new Stack<>();
         stack.add(root);
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             depth++;
-            //弹出所有的node
+            // 弹出所有的node
 
             Stack<TreeNode> stack1 = new Stack<>();
             int size = stack.size();
-            //当前层的数量
+            // 当前层的数量
             for (int i = 0; i < size; i++) {
                 TreeNode node = stack.pop();
                 stack1.add(node);
             }
-            //实际可以把stack进行服用，知道他的大小即可，这样就可以节省存储空间
-            while (!stack1.isEmpty()){
+            // 实际可以把stack进行服用，知道他的大小即可，这样就可以节省存储空间
+            while (!stack1.isEmpty()) {
                 TreeNode node = stack1.pop();
                 if (node.left != null) {
                     stack.add(node.left);
@@ -69,6 +71,7 @@ public class NO_104_depth_tree_easy {
     /**
      * 方法1 深度优先搜索DFS，递归的方式
      * 递归的公式：max（root） = max(root.left) + max(root.right) +1
+     * 
      * @param root
      * @return
      */
@@ -78,12 +81,14 @@ public class NO_104_depth_tree_easy {
         }
         int maxLeft = maxDepth(root.left);
         int maxRight = maxDepth(root.right);
-        return Math.max(maxLeft,maxRight) + 1;
+        return Math.max(maxLeft, maxRight) + 1;
     }
 
     /**
      *
      * 练习1 ：使用递归的方式
+     * 左右并行往下进行递归遍历，找到最大深度
+     * 
      * @param root
      * @return
      * @since 2026/1/28 12:52
@@ -94,6 +99,41 @@ public class NO_104_depth_tree_easy {
         }
         int l = maxDepth2(root.left);
         int r = maxDepth2(root.right);
-        return 1;
+        return Math.max(l, r) + 1;
     }
+
+    /**
+     *
+     * 练习2 ：使用队列的方式
+     * 
+     * @param root
+     * @return
+     * @since 2026/2/4 12:52
+     */
+    public static int maxDepth3(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+        int depth = 0;
+        // 用队列进行层次遍历
+        while (!queue.isEmpty()) {
+            depth++;
+            int size = queue.size();
+            // 遍历当前层的所有节点
+            for (int i = 0; i < size; i++) {
+                // 弹出当前层的所有节点
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+        }
+        return depth;
+    }
+
 }

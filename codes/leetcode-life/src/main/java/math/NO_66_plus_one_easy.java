@@ -14,7 +14,11 @@ import util.ArrayUtil;
  */
 public class NO_66_plus_one_easy {
 
-    public static void main(String[] args) {
+    /**
+ * 主函数，演示数组加一操作
+ * @param args 命令行参数（未使用）
+ */
+public static void main(String[] args) {
         int[] input = {9, 9, 8};
         int[] ret = plusOne_after(input);
         ArrayUtil.print(ret);
@@ -25,10 +29,13 @@ public class NO_66_plus_one_easy {
      * 数学规律  加1前进位的判断
      * 注意，数组的存储数据和index是倒序的
      *
-     * @param digits
-     * @return
+     * @param digits 非空数组表示的非负整数
+     * @return 加一后的数组
      */
     public static int[] plusOne(int[] digits) {
+        if (digits == null || digits.length == 0) {
+            return new int[]{1};
+        }
         int length = digits.length;
         for (int i = length - 1; i >= 0; i--) {
             if (digits[i] == 9) {
@@ -38,9 +45,9 @@ public class NO_66_plus_one_easy {
                 return digits;
             }
         }
-        int[] ret = new int[length + 1];
-        ret[0] = 1;
-        return ret;
+        int[] result = new int[length + 1];
+        result[0] = 1;
+        return result;
     }
 
     /**
@@ -48,10 +55,13 @@ public class NO_66_plus_one_easy {
      * 数学规律 +1后数字的判断
      * 注意，数组的存储数据和index是倒序的
      *
-     * @param digits
-     * @return
+     * @param digits 非空数组表示的非负整数
+     * @return 加一后的数组
      */
     public static int[] plusOne_after(int[] digits) {
+        if (digits == null || digits.length == 0) {
+            return new int[]{1};
+        }
         int length = digits.length;
         for (int i = length - 1; i >= 0; i--) {
             digits[i]++;
@@ -61,8 +71,8 @@ public class NO_66_plus_one_easy {
                 return digits;
             }
         }
-        int[] ret = new int[length + 1];
-        ret[0] = 1;
-        return ret;
+        int[] result = new int[length + 1];
+        result[0] = 1;
+        return result;
     }
 }

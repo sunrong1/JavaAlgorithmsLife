@@ -15,11 +15,11 @@ import static tree.TreeUtil.*;
  **/
 public class Basic_tree {
     public static void main(String[] args) {
-        //      3
-        //     /
-        //    2
-        //   / \
-        //  9   10
+        // 3
+        // /
+        // 2
+        // / \
+        // 9 10
         Queue<Integer> pretree = new LinkedList<>(Arrays.asList(3, 2, 9, null, null, 10));
         TreeNode tree = TreeUtil.createBinaryTree(pretree);
         preOrderTree(tree);
@@ -27,6 +27,5 @@ public class Basic_tree {
         postOrderTree(tree);
         leveOrderTree(tree);
     }
-
 
 }
