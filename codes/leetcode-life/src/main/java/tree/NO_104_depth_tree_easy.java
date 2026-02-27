@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -115,6 +116,7 @@ public class NO_104_depth_tree_easy {
             return 0;
         }
         Queue<TreeNode> queue = new ArrayDeque<>();
+        Queue<TreeNode> queue2 = new LinkedList<>();
         queue.add(root);
         int depth = 0;
         // 用队列进行层次遍历
