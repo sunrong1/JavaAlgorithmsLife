@@ -12,10 +12,11 @@ package array;
  */
 public class NO_27_remove_element_easy {
     public static void main(String[] args) {
-        int[] array = {3, 1, 1, 3};
-        int val = 3;
-        int ret = removeElement_removeFast(array, val);
-        System.out.println(ret);
+        // int[] array = { 3, 1, 1, 3 };
+        int[] array = { 0, 1, 2, 2, 3, 0, 4, 2 };
+        int val = 2;
+        int ret = removeElement_removeFast3(array, val);
+        System.out.println("result:" + ret);
 
     }
 
@@ -34,9 +35,9 @@ public class NO_27_remove_element_easy {
         if (nums == null || nums.length < 1) {
             return 0;
         }
-        //初始化新字符串长度为0，同时也表示新数组的初始指针的指向位置
+        // 初始化新字符串长度为0，同时也表示新数组的初始指针的指向位置
         int newLenght = 0;
-        for (int i = 0; i < nums.length; ) {
+        for (int i = 0; i < nums.length;) {
             if (nums[i] == val) {
                 i++;
             } else {
@@ -67,7 +68,7 @@ public class NO_27_remove_element_easy {
         if (nums == null || nums.length < 1) {
             return 0;
         }
-        //初始化新字符串长度为0，同时也表示新数组的初始指针的指向位置
+        // 初始化新字符串长度为0，同时也表示新数组的初始指针的指向位置
         int newLenght = nums.length;
         int fastIndex = 0;
         while (fastIndex < newLenght) {
@@ -86,5 +87,35 @@ public class NO_27_remove_element_easy {
         }
         System.out.println(" ");
         return newLenght;
+    }
+
+    /**
+     * 方法3：
+     * 双指针法优化版本,左右夹逼
+     * 
+     * @param nums
+     * @param val
+     * @return
+     */
+    public static int removeElement_removeFast3(int[] nums, int val) {
+        if (nums.length <= 0) {
+            return 0;
+        }
+        int num = nums.length;
+        int left = 0;
+        int right = num - 1;
+        // 使用双指针进行左右夹逼,所有的都判断掉，保证了原数组的长度等于left
+        while (left <= right) {
+            // 先找到左边等于val的数
+            if (nums[left] == val) {
+                nums[left] = nums[right];
+                right--;
+
+            } else {
+                left++;
+            }
+        }
+
+        return left;
     }
 }

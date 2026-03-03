@@ -17,13 +17,13 @@ import util.ArrayUtil;
  */
 public class NO_283_w8_5_move0toend_easy {
     public static void main(String[] args) {
-        int[] array = { 0, 2, 7, 11, 15, 0 };
+        int[] array = { 1, 0, 0, 7, 11, 15, 0 };
         Move1(array);
         ArrayUtil.print(array);
     }
 
     /**
-     * M1：双指针的方法，左右移动
+     * M1：双指针的方法，左右移动。has problem
      * 0移动到了最后，但是非0元素的相对位置变了
      * 
      * @param nums
@@ -51,16 +51,34 @@ public class NO_283_w8_5_move0toend_easy {
     }
 
     /**
-     * M2：保持位置不变的双指针移动
+     * M2：保持位置不变的双指针移动，两边夹逼的方式不行，需要用快慢指针
      * 
      * @param nums
      * @return
      */
     public static void Move1(int[] nums) {
-        int left = 0;
-        int right = nums.length - 1;
+        int slow = 0;
         if (nums.length < 1) {
             return;
+        }
+        int fast = 0;
+        while (fast < nums.length) {
+            // slow找到第一个为0的数
+            while (slow < nums.length && nums[slow] != 0) {
+                slow++;
+            }
+            fast = slow + 1;
+            // fast找到第一个非0的数
+            while (fast < nums.length && nums[fast] == 0) {
+                fast++;
+            }
+            if (fast >= nums.length) {
+                break;
+            }
+            // slow和fast交换
+            nums[slow] = nums[fast];
+            nums[fast] = 0;
+            slow++;
         }
 
     }
