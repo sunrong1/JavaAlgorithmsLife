@@ -1,7 +1,6 @@
 package array;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import util.ArrayUtil;
 
@@ -13,7 +12,7 @@ import util.ArrayUtil;
  * 数组中，找到两个整数等于目标值的index
  *
  * @author dave
- * @since 2021/2/11 21:42
+ * @since 2026/3/3 12:42
  */
 public class NO_283_w8_5_move0toend_easy {
     public static void main(String[] args) {

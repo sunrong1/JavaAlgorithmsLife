@@ -17,11 +17,12 @@ import java.util.List;
  *
  * @author dave
  * @since 2021/2/14 21:42
+ * @update 2026/3/4 13:26
  */
 public class NO_15_3_sum_medium {
     public static void main(String[] args) {
-//        int[] nums = {-1, 0, 1, 2, -1, -4};
-        int[] nums = {2,-3,0,-2,-5,-5,-4,1,2,-2,2,0,2,-4,5,5,-10};
+        // int[] nums = {-1, 0, 1, 2, -1, -4};
+        int[] nums = { 2, -3, 0, -2, -5, -5, -4, 1, 2, -2, 2, 0, 2, -4, 5, 5, -10 };
         List<List<Integer>> ret = threeSum1(nums);
         ArrayUtil.printIntListList(ret);
     }
@@ -29,45 +30,44 @@ public class NO_15_3_sum_medium {
     /**
      * 先确定一个数，再用双指针确定其他的两个数
      * 最重要的是排除重复，双指针中也需要排除重复
+     * 
      * @param nums
      * @return
      */
     private static List<List<Integer>> threeSum1(int[] nums) {
         List<List<Integer>> ret = new ArrayList<>();
-        if (nums == null || nums.length < 3){
+        if (nums == null || nums.length < 3) {
             return ret;
         }
-        //排序好，后面才可以用夹逼定理节约复杂度，提升算法效率
+        // 排序好，后面才可以用夹逼定理节约复杂度，提升算法效率
         Arrays.sort(nums);
-        if (nums[0] > 0){
+        if (nums[0] > 0) {
             return ret;
         }
         for (int i = 0; i < nums.length; i++) {
-            int l = i+1;
-            int r = nums.length -1;
-            //双指针求和的目标
-            int sum = - nums[i];
-            //跳过重复的head
-            while (i < nums.length -1 && nums[i] == nums[i+1]){
+            int l = i + 1;
+            int r = nums.length - 1;
+            // 双指针求和的目标
+            int sum = -nums[i];
+            // 跳过重复的head
+            while (i < nums.length - 1 && nums[i] == nums[i + 1]) {
                 i++;
             }
-            while (l < r){
-                if (nums[l] + nums[r] == sum){
+            while (l < r) {
+                if (nums[l] + nums[r] == sum) {
                     ret.add(List.of(nums[i], nums[l], nums[r]));
-                    //排除重复的部分
-                    while (l < r && nums[l] == nums[l+1]){
+                    // 排除重复的部分
+                    while (l < r && nums[l] == nums[l + 1]) {
                         l++;
                     }
-                    while (l< r && nums[r] == nums[r-1]){
+                    while (l < r && nums[r] == nums[r - 1]) {
                         r--;
                     }
                     l++;
                     r--;
-                }
-                else if (nums[l] + nums[r] < sum){
+                } else if (nums[l] + nums[r] < sum) {
                     l++;
-                }
-                else {
+                } else {
                     r--;
                 }
             }
@@ -93,7 +93,7 @@ public class NO_15_3_sum_medium {
         }
         Arrays.sort(nums);
 
-        //优化1 最小最大值规律 1 2 3 4 -->0
+        // 优化1 最小最大值规律 1 2 3 4 -->0
         if (nums[0] > 0) {
             return lists;
         }
@@ -129,5 +129,58 @@ public class NO_15_3_sum_medium {
             }
         }
         return lists;
+    }
+
+    /**
+     * M2: 双指针法优化版本,左右夹逼.夹逼的目标变成了0-nums[i]；
+     * 首先进行排序，才能进行夹逼
+     *
+     * @param nums
+     * @return
+     * @since 2026/3/4 13:26
+     */
+    public static List<List<Integer>> threeSum3(int[] nums) {
+        List<List<Integer>> ret = new ArrayList<>();
+        if (nums == null || nums.length < 3) {
+            return ret;
+        }
+        Arrays.sort(nums);
+        // 优化: 如果最小值大于0，不可能有三数之和为0
+        if (nums[0] > 0) {
+            return ret;
+        }
+
+        int left, right, target;
+        // 逐个数字进行夹逼
+        for (int i = 0; i <= nums.length - 3; i++) {
+            // 跳过重复的元素
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            left = i + 1;
+            right = nums.length - 1;
+            target = 0 - nums[i];
+            while (left < right) {
+                int sum = nums[left] + nums[right];
+                if (sum == target) {
+                    ret.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    // 跳过重复的左指针元素
+                    while (left < right && nums[left] == nums[left + 1]) {
+                        left++;
+                    }
+                    // 跳过重复的右指针元素
+                    while (left < right && nums[right] == nums[right - 1]) {
+                        right--;
+                    }
+                    left++;
+                    right--;
+                } else if (sum < target) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+        }
+        return ret;
     }
 }

@@ -10,6 +10,7 @@ import java.util.List;
  *
  * @author dave
  * @since 2021/2/16 20:30
+ * @update 2026/3/4 12:30
  */
 public class ArrayUtil {
     public static void printIntListList(List<List<Integer>> lists) {
@@ -38,9 +39,11 @@ public class ArrayUtil {
 
     public static void print(int[] array) {
         if (array == null) {
-            System.out.println("----------null---------");
+            System.out.println("\n----------null---------");
             return;
         }
+        System.out.print("\nResult：");
+
         for (Integer list : array) {
             System.out.print(list + " ");
         }
@@ -53,4 +56,3 @@ public class ArrayUtil {
         arr[j] = tmp;
     }
 }
-
