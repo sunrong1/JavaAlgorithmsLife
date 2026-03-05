@@ -23,7 +23,7 @@ public class NO_15_3_sum_medium {
     public static void main(String[] args) {
         // int[] nums = {-1, 0, 1, 2, -1, -4};
         int[] nums = { 2, -3, 0, -2, -5, -5, -4, 1, 2, -2, 2, 0, 2, -4, 5, 5, -10 };
-        List<List<Integer>> ret = threeSum1(nums);
+        List<List<Integer>> ret = threeSum3(nums);
         ArrayUtil.printIntListList(ret);
     }
 

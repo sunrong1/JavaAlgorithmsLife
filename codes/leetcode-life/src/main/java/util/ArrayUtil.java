@@ -18,6 +18,7 @@ public class ArrayUtil {
             System.out.println("----------null---------");
             return;
         }
+        System.out.println("\n----------Result---------");
         for (List<Integer> integerList : lists) {
             for (Integer integer : integerList) {
                 System.out.print(integer + " ");
@@ -31,6 +32,7 @@ public class ArrayUtil {
             System.out.println("----------null---------");
             return;
         }
+        System.out.println("\n----------Result---------");
         for (T list : lists) {
             System.out.print(list + " ");
         }
