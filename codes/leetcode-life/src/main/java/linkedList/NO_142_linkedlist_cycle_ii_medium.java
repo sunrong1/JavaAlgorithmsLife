@@ -21,7 +21,7 @@ public class NO_142_linkedlist_cycle_ii_medium {
         listNodeHead.next.next = new ListNode(4);
         listNodeHead.next.next.next = listNodeHead;
         //boolean ret = hasCycle(listNodeHead);
-        ListNode ret = detectCycle(listNodeHead);
+        ListNode ret = detectCycle2(listNodeHead);
         System.out.println(ret.val);
     }
 
@@ -37,11 +37,10 @@ public class NO_142_linkedlist_cycle_ii_medium {
      * @param head
      * @return
      */
-    public static ListNode detectCycle(ListNode head) {
+    public static ListNode detectCycle1(ListNode head) {
         if (head == null || head.next == null) {
             return null;
         }
-        Set<ListNode> set = new HashSet<>();
         //专门创建一个快指针和一个慢指针
         ListNode fast = head.next.next;
         ListNode slow = head.next;
@@ -69,8 +68,51 @@ public class NO_142_linkedlist_cycle_ii_medium {
     }
 
     /**
-     * 方法2
-     * hashSet方法
+     * 快慢指针方法，数学找出规律
+     * 首先确定存在环，fast的速度是slow的2倍，就是要求Dsj
+     * fast = 2* slow
+     * sj = from start to joint
+     * Dsj：the distance from start to joint
+     * 
+     * fast = Dsj + C + x
+     * slow = Dsj + x
+     * 2*slow = fast ==> Dsj + C + x = 2Dsj + 2x ==> C = Dsj+ x
+     * ==> Dsj = C - x
+     * 神奇的，有一个点再走C-x步就到joint点了，数学推理
+     * 
+     * 
+     * @date 2026/3/24 13:30
+     * @param head
+     * @return
+     */
+    public static ListNode detectCycle2(ListNode head) {
+        if (head == null || head.next == null) {
+            return null;
+        }
+        // 首先找到相交的节点
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                break;
+            }
+        }
+        if (fast == null || fast.next == null) {
+            return null;
+        }
+        // slow 和 head 一起走，相遇的点就是相交的点；恰好的数学推论，哈哈
+        ListNode node = head;
+        while (node != slow) {
+            slow = slow.next;
+            node = node.next;
+        }
+        return node;
+    }
+
+    /**
+     * 方法2 hashSet方法
      * 第一个检测重合的点就是相交的点
      *
      * @param head
@@ -87,6 +129,31 @@ public class NO_142_linkedlist_cycle_ii_medium {
             if (!set.add(node)) {
                 return node;
             }
+            node = node.next;
+        }
+        return null;
+    }
+
+    /**
+     * hashset方法，空间占用较大
+     * 
+     * @date 2026/3/24 13:00
+     * @param head
+     * @return
+     */
+    public static ListNode detectCycle_set2(ListNode head) {
+        if (head == null || head.next == null) {
+            return null;
+        }
+        // 创建hashset，保存节点
+        Set<ListNode> set = new HashSet<>();
+        // 创建指针节点
+        ListNode node = head;
+        while (node.next != null) {
+            if (set.contains(node)) {
+                return node;
+            }
+            set.add(node);
             node = node.next;
         }
         return null;
