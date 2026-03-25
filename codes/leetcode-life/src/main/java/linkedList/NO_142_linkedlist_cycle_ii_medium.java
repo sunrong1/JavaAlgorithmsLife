@@ -68,7 +68,7 @@ public class NO_142_linkedlist_cycle_ii_medium {
     }
 
     /**
-     * 快慢指针方法，数学找出规律
+     * 快慢指针方法，数学找出规律；==》Floyd 判圈算法，判圈的经典算法
      * 首先确定存在环，fast的速度是slow的2倍，就是要求Dsj
      * fast = 2* slow
      * sj = from start to joint

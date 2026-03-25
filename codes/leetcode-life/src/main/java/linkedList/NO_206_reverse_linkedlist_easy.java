@@ -78,18 +78,30 @@ public class NO_206_reverse_linkedlist_easy {
         return newHead;
     }
 
+    /**
+     * 两两反转
+     * 思想：分割两部分的思想，一部分是反转的部分的new linklist，一部分是未反转的部分old linklist
+     * pre = null, 表示新链表的头节点
+     * cur 表示未反转的链表的头节点
+     * 1次反转后：
+     * 
+     * @param head
+     * @return
+     */
     private static ListNode reverseList_2(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode curr = head;
-        while (curr != null) {
-            ListNode temp = curr.next.next;
-            ListNode node = curr.next;
-            node.next = curr;
-            curr = temp;
+
+        ListNode pre = null; // 前驱节点，初始为Null，新链表的第一个节点
+        ListNode cur = head; //
+        while (cur != null) {
+            ListNode temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
         }
-        return curr;
+        return pre;
     }
 
 }
