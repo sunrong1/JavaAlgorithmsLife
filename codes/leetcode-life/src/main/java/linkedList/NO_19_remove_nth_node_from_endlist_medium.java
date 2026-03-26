@@ -12,12 +12,12 @@ package linkedList;
 public class NO_19_remove_nth_node_from_endlist_medium {
     public static void main(String[] args) {
         ListNode listNodeHead = new ListNode(1);
-        listNodeHead.next = new ListNode(3);
-        listNodeHead.next.next = new ListNode(4);
+        // listNodeHead.next = new ListNode(3);
+        // listNodeHead.next.next = new ListNode(4);
 
         //LinkedListUtil.printLinkedList(removeNthFromEnd(listNodeHead, 2));
 //        LinkedListUtil.printLinkedList(removeNthFromEnd_optimization(listNodeHead, 2));
-        LinkedListUtil.print(removeNthFromEnd_count(listNodeHead, 2));
+LinkedListUtil.print(removeNthFromEnd_new(listNodeHead, 1));
 
     }
 
@@ -143,5 +143,41 @@ public class NO_19_remove_nth_node_from_endlist_medium {
         findNode.next = findNode.next.next;
 
         return tempNode.next;
+    }
+
+    /**
+     * delete the nth node from the end of list using two pointers
+     * skill:using the dummy node to simplify the code
+     * 
+     * @date 2026/3/26 20:23
+     * @param head
+     * @param n
+     * @return
+     */
+    public static ListNode removeNthFromEnd_new(ListNode head, int n) {
+        // create the dummy node, that is a smart trick
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        // delete the nth node = fast move nth steps
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+        int i = 0;
+        // move fast pointer to the nth node
+        while (i < n && fast.next != null) {
+            fast = fast.next;
+            i++;
+        }
+        // if fast is null, it means n is greater than the length of the list
+        if (fast == null) {
+            return head;
+        }
+        // move fast and slow pointers to the end
+        while (fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        // d 1 ==>delete the 1,update The nth node value
+        slow.next = slow.next.next;
+        return dummy.next;
     }
 }
