@@ -15,7 +15,7 @@ import java.util.*;
 public class NO_20_valid_parentheses_easy {
     public static void main(String[] args) {
         String input = "()[]{}}";
-        boolean ret = isValid_switch(input);
+        boolean ret = isValid_switch3(input);
         System.out.println(ret);
     }
 
@@ -107,5 +107,50 @@ public class NO_20_valid_parentheses_easy {
             }
         }
         return true;
+    }
+
+    /**
+     * 方法3：使用Stack实现括号匹配, using the swtich,make the code more simple
+     * (){()}
+     * 
+     * @date 2026/3/27 13:39
+     * @param s
+     * @return
+     */
+    public static boolean isValid_switch3(String s) {
+        if (s == null || s.length() % 2 != 0) {
+            return false;
+        }
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{') {
+                stack.add(s.charAt(i));
+            } else {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                switch (s.charAt(i)) {
+                    case ')':
+                        if (stack.pop() != '(') {
+                            return false;
+                        }
+                        break;
+                    case ']':
+                        if (stack.pop() != '[') {
+                            return false;
+                        }
+                        break;
+                    case '}':
+                        if (stack.pop() != '{') {
+                            return false;
+                        }
+                        break;
+                    default:
+                        return false;
+                }
+            }
+
+        }
+        return stack.isEmpty();
     }
 }
