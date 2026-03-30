@@ -110,7 +110,7 @@ public class NO_20_valid_parentheses_easy {
     }
 
     /**
-     * 方法3：使用Stack实现括号匹配, using the swtich,make the code more simple
+     * 方法3：使用Stack实现括号匹配, using the switch,make the code more simple
      * (){()}
      * 
      * @date 2026/3/27 13:39
