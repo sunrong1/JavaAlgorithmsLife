@@ -19,8 +19,8 @@ public class NO_1249_remove_to_make_valid_parentheses_medium {
 
     public static void main(String[] args) {
         String input = "((())";
-        String ret = minRemoveToMakeValid_version2(input);
-        System.out.println(ret);
+        String ret = minRemoveToMakeValid_v1(input);
+        System.out.println("\nresult:" + ret);
     }
 
     /**
@@ -113,6 +113,49 @@ public class NO_1249_remove_to_make_valid_parentheses_medium {
         }
         for (int i = 0; i < s.length(); i++) {
             if (!removeIndex.contains(i)) {
+                ret.append(s.charAt(i));
+            }
+        }
+        return ret.toString();
+    }
+
+    /**
+     * method3:
+     * using the stack to record the char of the left parentheses
+     * using the list to record the index of need to remove parentheses
+     * 
+     * @date 2026/4/3 13:30
+     * @param s
+     * @return
+     */
+    public static String minRemoveToMakeValid_v1(String s) {
+        // StringBuilder 比StringBuffer 在单线程效率更高
+        StringBuilder ret = new StringBuilder();
+        // using the list to record the index of need to remove parentheses
+        // but if using the set is better,because the set is ordered,so the remove is
+        // fast,using O(1)
+        List<Integer> list = new ArrayList<>();
+        Deque<Integer> stack = new LinkedList<>();
+        for (int i = 0; i < s.length(); i++) {
+            // stack store the index of left parentheses
+            if (s.charAt(i) == '(') {
+                stack.push(i);
+            } else if (s.charAt(i) == ')') {
+                // if stack is empty,add the index to the list
+                // if stack is not empty,pop the stack
+                if (stack.isEmpty()) {
+                    list.add(i);
+                } else {
+                    stack.pop();
+                }
+            }
+        }
+        // if stack is not empty,add the index to the list
+        while (!stack.isEmpty()) {
+            list.add(stack.pop());
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (!list.contains(i)) {
                 ret.append(s.charAt(i));
             }
         }
