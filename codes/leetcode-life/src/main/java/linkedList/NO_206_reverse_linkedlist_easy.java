@@ -104,4 +104,40 @@ public class NO_206_reverse_linkedlist_easy {
         return pre;
     }
 
+    /**
+     * @date 2026/4/8 13:52
+     * @param head
+     * @return
+     */
+    private static ListNode reverseList_3(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        // first:create the pre node
+        ListNode pre = null;
+        ListNode cur = head;
+        // while (cur != null) {
+        // // save the next node
+        // ListNode temp = cur.next;
+        // // reverse the node
+        // cur.next = pre;
+        // // move the node
+        // pre = cur;
+        // // continue the node
+        // cur = temp;
+        // }
+
+        while (cur != null) {
+            // 三个节点之间的操作
+            // cache the next node, cur node point to pre node, pre node move to cur node
+            // update the cur node to next node
+            ListNode temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
+        }
+        return pre;
+
+    }
+
 }
