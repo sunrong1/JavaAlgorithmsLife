@@ -90,4 +90,28 @@ public class NO_141_linkedList_cycle_easy {
         return false;
     }
 
+    /**
+     * 方法4：
+     * 快慢指针方法，龟兔赛跑算法
+     * 
+     * @param head
+     * @param head
+     * @return
+     */
+    public static boolean hasCycle4(ListNode head) {
+        if (head == null || head.next == null) {
+            return false;
+        }
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (slow != fast) {
+            if (fast == null || fast.next == null) {
+                return false;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return true;
+    }
+
 }
