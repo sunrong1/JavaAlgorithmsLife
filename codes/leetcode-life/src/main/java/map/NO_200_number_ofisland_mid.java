@@ -19,7 +19,7 @@ public class NO_200_number_ofisland_mid {
                 {'0', '0', '1', '0', '0'},
                 {'0', '0', '0', '1', '1'}
         };
-        System.out.println(numIslands(grid));
+        System.out.println(numIslands2(grid));
     }
 
     /**
@@ -62,6 +62,72 @@ public class NO_200_number_ofisland_mid {
         dfs(grid,i,j+1);
     }
 
-}
+    /**
+     * 方法2 并查集 merge
+     * 
+     * @date 2026/4/11 13:41
+     * @param grid
+     * @return
+     */
+    public static int numIslands2(char[][] grid) {
+        if (grid == null || grid.length == 0) {
+            return 0;
+        }
+        // the num of islands
+        int nums = 0;
+        // first,init union find
+        int rows = grid.length;
+        int cols = grid[0].length;
+        int[] parent = new int[rows * cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (grid[i][j] == '1') {
+                    // 初始化并查集父节点,指向自己的位置
+                    parent[i * cols + j] = i * cols + j;
+                    nums++;
+                }
+            }
+        }
+        // second,merge
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (grid[i][j] == '1') {
+                    int index = i * cols + j;
+                    // the right is land,merge
+                    if (j + 1 < cols && grid[i][j + 1] == '1') {
+                        if (merge(parent, index, index + 1)) {
+                            nums--;
+                        }
+                    }
 
+                    // the bottom is land,merge
+                    if (i + 1 < rows && grid[i + 1][j] == '1') {
+                        if (merge(parent, index, index + cols)) {
+                            nums--;
+                        }
+                    }
+                }
+            }
+        }
+        return nums;
+    }
+
+    public static boolean merge(int[] parent, int index1, int index2) {
+        int root1 = find(parent, index1);
+        int root2 = find(parent, index2);
+        if (root1 != root2) {
+            parent[root1] = root2;
+            return true;
+        }
+        return false;
+    }
+
+    private static int find(int[] parent, int index2) {
+        // 找到根节点,index 和自己相等，才是根节点！！
+        while (parent[index2] != index2) {
+            index2 = parent[index2];
+        }
+        return index2;
+    }
+}
 
