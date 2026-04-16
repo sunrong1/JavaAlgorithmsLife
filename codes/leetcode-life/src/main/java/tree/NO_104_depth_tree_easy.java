@@ -138,4 +138,64 @@ public class NO_104_depth_tree_easy {
         return depth;
     }
 
+    /**
+     * the depth of the tree using a different approach
+     * THe easy way is to use the 层序遍历
+     * 
+     * @date 2026/4/16 13:20
+     * @param root
+     * @return
+     */
+    public static int maxDepth_1(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        // 1. create the queue
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+        int depth = 0;
+        // Use queue for level order traversal
+        while (!queue.isEmpty()) {
+            depth++;
+            // 1. get the size of the queue,the know the number of nodes in the current
+            // level
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                // 2. add the children of the node to the queue
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+        }
+        return depth;
+    }
+
+    /**
+     * use the
+     * 1.1 递归三要素
+     * 基本情况（Base Case）：当节点为空时，深度为0
+     * 递归关系：当前节点深度 = max(左子树深度, 右子树深度) + 1
+     * 递归方向：从根节点开始，先处理左右子树，再处理当前节点（后序遍历）
+     * 
+     * @date 2026/4/16 13:30
+     * @param root
+     * @return
+     */
+    public static int maxDepth_416(TreeNode root) {
+        // Recursive approach to calculate the depth
+        // 1. 递归的终止条件, 如果root为空，则返回0,说明到了最低层
+        if (root == null) {
+            return 0;
+        }
+        // 2. 递归的公式，max(root) = max(root.left) + max(root.right) + 1
+        int left = maxDepth_416(root.left);
+        int right = maxDepth_416(root.right);
+        int depth = Math.max(left, right) + 1;
+        return depth;
+    }
+
 }
