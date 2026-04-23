@@ -2,12 +2,10 @@ package sort;
 
 import util.ArrayUtil;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 问题类型：
- * 排序问题，指定特殊方式排序
+ * 排序问题，归并排序
  * <p>
  * Description
  * 煎饼翻转 完成对数组的排序

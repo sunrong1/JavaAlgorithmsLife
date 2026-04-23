@@ -73,4 +73,23 @@ public class NO_226_invert_binary_tree_easy {
         invertTree(root.right);
         return root;
     }
+
+    /**
+     * 递归练习
+     * 
+     * @date 2026-04-20 13:26
+     * @param root
+     * @return
+     */
+    public static TreeNode invertTree2(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        // I believe that the recursion can sovle this problem.
+        TreeNode left = invertTree2(root.left);
+        TreeNode right = invertTree2(root.right);
+        root.left = right;
+        root.right = left;
+        return root;
+    }
 }

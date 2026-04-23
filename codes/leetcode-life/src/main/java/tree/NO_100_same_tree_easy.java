@@ -39,4 +39,30 @@ public class NO_100_same_tree_easy {
         }
         return ret;
     }
+
+    /**
+     * 方法:
+     * 递归，小问题可以解决，详细大问题可以解决
+     * 切分小问题
+     * 
+     * @date 2026-4-23 13:25
+     * @param p
+     * @param q
+     * @return
+     */
+    public static boolean isSameTree2(TreeNode p, TreeNode q) {
+        // 子问题的顺序是：根节点，左子树，右子树
+        if (p == null && q == null) {
+            return true;
+        }
+        if (p == null || q == null) {
+            return false;
+        }
+        if (p.val != q.val) {
+            return false;
+        }
+        boolean ret = isSameTree2(p.left, q.left);
+        ret = ret && isSameTree2(p.right, q.right);
+        return ret;
+    }
 }
